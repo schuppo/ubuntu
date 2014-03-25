@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-sudo apt-get update -y
-sudo apt-get install python-software-properties -y
-sudo apt-add repository ppa:rquillo/ansible -y
-sudo apt-get ansible -y
+#
+sudo sed -i 's/^mesg n$/tty -s \&\& mesg n/g' /root/.profile
+sudo apt-get update -y 2> /dev/null
+sudo apt-get install python-software-properties -y > /dev/null
+sudo apt-add-repository ppa:rquillo/ansible -y 2> /dev/null
+sudo apt-get update -y 2> /dev/null
+sudo apt-get install ansible -y 2> /dev/null
 
 

@@ -1,7 +1,10 @@
 ---
 -
+  name: install iptables
+  apt: name=iptables state=present
+-
   name: ensure that iptables starts at boot time
-  service: name=iptables state=enabled
+  service: name=iptables state=started enabled=yes
 -
   name: define basic table
   command: bash /mnt/ansible/scripts/firewall_basic.sh
