@@ -1,0 +1,12 @@
+---
+-
+  name: install tools
+  apt: name={{ item }} state=present
+  with_items:
+      - rubygems
+      - git-core
+      - curl
+      - unzip
+      - vim
+      - zsh
+      - ctags

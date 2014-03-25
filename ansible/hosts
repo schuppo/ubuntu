@@ -1,0 +1,19 @@
+[local]
+mail ansible_ssh_host=192.168.178.52 ansible_ssh_user=vagrant environment=local database_root_password=
+
+[production]
+jourfixe
+
+[site:children]
+local
+production
+
+[site:vars]
+modoboa_name=mail
+database_type=mysql
+database_name=mail
+database_user=mail
+database_root=root
+mailbox_owner=vmail
+mailbox_owner_id=5000
+mailbox_owner_group_id=5000

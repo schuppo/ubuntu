@@ -1,0 +1,20 @@
+---
+-
+  name: install python if not present
+  apt: name=iptables state=present
+
+-
+  name: install python requirements via apt
+  apt: name={{ item }} state=present
+  with_items:
+    - python-devel
+    - python-setuptools
+    - python-setuptools-devel
+    - gcc
+    - libxml2-devel
+    - libxslt-devel
+    - MySQL-python
+-
+  name: install pip
+  command:  easy_install pip
+            creates=/usr/bin/pip

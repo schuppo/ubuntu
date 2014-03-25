@@ -1,0 +1,23 @@
+---
+- include: tools.yml
+- include: iptables.yml
+- include: dotfiles.yml user={{ ansible_ssh_user }} dotfiles_dest=/home/{{ ansible_ssh_user }}
+- include: ntp.yml
+-
+  name: customize clock
+  lineinfile: dest=/etc/sysconfig/clock
+              regexp=ZONE=
+              line=ZONE="Berlin/Europe"
+-
+  name: copy timezone info
+  command: cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+-
+  name: set /etc/crontab
+  copy: src=crontab
+        dest=/etc/
+-
+  name: start cron
+  service: name=crond state=started
+-
+  name: autostart cron
+  command: chkconfig crond on

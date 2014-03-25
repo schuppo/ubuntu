@@ -1,0 +1,10 @@
+---
+- name: install ntp
+  apt: name=ntp state=present
+- name: start ntp service
+  service: name=ntpd state=started enabled=yes
+- name: copy /etc/ntp.conf
+  when: env != 'local'
+  copy: src=ntp.conf
+        dest=/etc/
+  notify: restart ntpd

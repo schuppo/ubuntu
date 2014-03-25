@@ -1,0 +1,16 @@
+---
+-
+  name: install MySQL
+  apt: name={{ item }} state=present
+  with_items:
+    - MySQL-python
+    - mysql-server
+
+-
+  name: make sure mysqld is running
+  service: name=mysqld state=started enabled=true
+-
+  file: path=/etc/mysql/conf.d state=directory
+# - name: Set MySQL number of connections
+#   copy: src=/vagrant/ansible/templates/max_connections.cnf dest=/etc/mysql/conf.d/max_connections.cnf
+#   notify: restart mysql
